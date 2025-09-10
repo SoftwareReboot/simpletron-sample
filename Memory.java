@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class Memory {
    String[] addresses;
+   String currAcc;
+   int currCounter;
+   
    
    public Memory(int size) {
-      addresses = new String[size];   
+      addresses = new String[size];
+      currAcc = new String("+0000");
+      currCounter = 0;   
       
       for (int i = 0; i < size; i++)
          addresses[i] = "0000";
@@ -21,8 +26,16 @@ public class Memory {
    }
    
    public void update() {
-      System.out.println("MEMORY:");
+      // load registers
+      System.out.println("REGISTERS:");
+      System.out.printf("accumulator:%11s%5s%n", " ", currAcc);
+      System.out.printf("programCounter:%11s%02d%n", " ", currCounter);
+      System.out.printf("instructionRegister:%3s%5s%n", " ", currAcc);
+      System.out.printf("operationCode:%12s%02d%n", " ", currCounter);
+      System.out.printf("operand:%18s%02d%n%n", " ", currCounter);
       
+      // load memory addresses   
+      System.out.println("MEMORY:");
       System.out.printf("%-6s", " ");
       for (int i = 0; i < 10; i++) {
          System.out.printf("%5d%4s", i, " ");
