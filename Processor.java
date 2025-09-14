@@ -14,8 +14,10 @@ public class Processor {
    }
    
    public String write(int address){
-   
+      return null;
    }
    
-   public String loadM
+   public String loadM() {
+      return null;
+   }
 }
