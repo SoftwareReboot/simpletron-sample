@@ -35,4 +35,8 @@ public class Memory {
    public static int getCurrCounter() {
       return currCounter;
    }
+   
+   public static int getMemSize() {
+      return addresses.size;
+   }
 }
