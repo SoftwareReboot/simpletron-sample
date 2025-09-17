@@ -16,7 +16,7 @@ public class Memory {
       addresses[index] = value;
    }
    
-   public String getItem (int index) {
+   public static String getItem (int index) {
       return addresses[index];  
    }
 
@@ -26,6 +26,10 @@ public class Memory {
    
    public static String getCurrAcc() {
       return currAcc;
+   }
+   
+   public static void setAcc(String value) {
+      currAcc = value;
    }
 
    public static int getCurrCounter() {
