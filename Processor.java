@@ -12,7 +12,15 @@ public class Processor {
    public static void performOperation(String instruction) {
       int intInstr = Integer.parseInt(instruction);
       int opCode = intInstr / 10;
-      int operand = intInstr % 10;  
+      int operand = intInstr % 10;
+      
+      switch (opCode) {
+         case 10: readAdd(operand); break;
+         case 11: write(operand); break;
+         case 20: loadM(operand); break;
+         
+         
+      }  
    }
    
    public void readAdd(int address) {
@@ -21,7 +29,7 @@ public class Processor {
       Memory.addItem(address, val);
    }
    
-   public String write(int address){
+   public void write(int address){
       String value = Memory.getItem(address);
       System.out.println(value);
    }
