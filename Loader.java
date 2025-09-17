@@ -76,6 +76,12 @@ public class Loader {
                 System.out.println();
         }
     }
+    
+    public void execute() {
+      for (int i = 0; i < Memory.getMemSize(); i++) {
+         Processor.performOperation(Memory.getItem(i));  
+      }
+    }
 
     public static void main(String ...args) {
         if (args.length == 0) {
