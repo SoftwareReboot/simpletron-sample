@@ -11,7 +11,7 @@ public class Loader {
         loadFile(filename);
 
         pro = new Processor(mem);
-        dump();
+        pro.execute();
     }
 
     public void loadFile(String filename) {
@@ -32,43 +32,6 @@ public class Loader {
             System.err.println("Error: File not found: " + filename); 
         } catch (Exception e) {
             System.out.println("An error occurred: " + e.getMessage());
-        }
-    }
-
-    public void dump() {
-        String[] addresses = mem.getAdds();
-        String currAcc = pro.getAcc();
-        int currCounter = pro.getCounter();
-        String currReg = mem.getItem(currCounter);
-
-        // Load registers
-        System.out.println("REGISTERS:");
-        System.out.printf("accumulator:%11s%5s%n", " ", currAcc);
-        System.out.printf("programCounter:%11s%02d%n", " ", currCounter);
-        System.out.printf("instructionRegister:%3s%5s%n", " ", currReg);
-        System.out.printf("operationCode:%12s%02d%n", " ", Integer.parseInt(currReg) / 100);
-        System.out.printf("operand:%18s%02d%n%n", " ", Integer.parseInt(currReg) % 100);
-
-        // Load memory addresses   
-        System.out.println("MEMORY:");
-        System.out.printf("%-6s", " ");
-        for (int i = 0; i < 10; i++) {
-            System.out.printf("%5d%4s", i, " ");
-        }
-        System.out.println();
-
-        for (int i = 0; i < 100; i++) {
-            if (i % 10 == 0) {
-                System.out.printf("%02d", i);
-                System.out.printf("%4s", " ");
-            }
-            if (addresses[i].startsWith("-"))
-                System.out.print(addresses[i]);
-            else
-                System.out.print("+" + addresses[i]);
-            System.out.printf("%4s", " ");
-            if (i % 10 == 9)
-                System.out.println();
         }
     }
 
