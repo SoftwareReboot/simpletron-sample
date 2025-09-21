@@ -44,8 +44,6 @@ public class Processor {
       int intInstr = Integer.parseInt(instruction);
       int opCode = intInstr / 100;    
       int operand = intInstr % 100;
-      
-      System.out.println();
 
       switch (opCode) {
             case 10: 
