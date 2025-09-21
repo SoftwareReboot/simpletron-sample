@@ -11,7 +11,7 @@ public class Loader {
         loadFile(filename);
 
         pro = new Processor(mem);
-        pro.execute();
+        pro.dump();
     }
 
     public void loadFile(String filename) {
