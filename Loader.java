@@ -3,37 +3,31 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Loader {
+    public Memory mem;
+    public Processor pro;
+
     public Loader(String filename) {
-        Memory mem = new Memory(100);
+        mem = new Memory(100);
+        loadFile(filename);
+
+        pro = new Processor(mem);
+        dump();
+    }
+
+    public void loadFile(String filename) {
         File file = new File(filename);
-        
         try (Scanner scan = new Scanner(file)) { 
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
-                if (!line.isEmpty()) {
-                    if (line.startsWith(";"))
-                        continue;
-                    else {
-                        String[] tokens = line.trim().split("\\s+");
-                        if (tokens.length == 1)
-                            continue;
-                        else {
-                            int index = Integer.parseInt(tokens[0]);
-                            String value = tokens[1];
-
-                            mem.addItem(index, value);
-
-                            for (int i = 0; i < tokens.length; i++) {
-                                tokens[i] = null;
-                            }
-                        }
+                if (!line.isEmpty() && !line.startsWith(";")) {
+                    String[] tokens = line.trim().split("\\s+");
+                    if (tokens.length >= 2) {
+                        int index = Integer.parseInt(tokens[0]);
+                        String value = tokens[1];
+                        mem.addItem(index, value);
                     }
-                } else if (line.isEmpty() && scan.hasNextLine())
-                    continue;
-                else
-                    break;
+                }
             }
-            update();
         } catch (FileNotFoundException e) {
             System.err.println("Error: File not found: " + filename); 
         } catch (Exception e) {
@@ -41,18 +35,19 @@ public class Loader {
         }
     }
 
-    public void update() {
-        String[] addresses = Memory.getAdds();
-        String currAcc = Memory.getCurrAcc();
-        int currCounter = Memory.getCurrCounter();
+    public void dump() {
+        String[] addresses = mem.getAdds();
+        String currAcc = pro.getAcc();
+        int currCounter = pro.getCounter();
+        String currReg = mem.getItem(currCounter);
 
         // Load registers
         System.out.println("REGISTERS:");
         System.out.printf("accumulator:%11s%5s%n", " ", currAcc);
         System.out.printf("programCounter:%11s%02d%n", " ", currCounter);
-        System.out.printf("instructionRegister:%3s%5s%n", " ", currAcc);
-        System.out.printf("operationCode:%12s%02d%n", " ", currCounter);
-        System.out.printf("operand:%18s%02d%n%n", " ", currCounter);
+        System.out.printf("instructionRegister:%3s%5s%n", " ", currReg);
+        System.out.printf("operationCode:%12s%02d%n", " ", Integer.parseInt(currReg) / 100);
+        System.out.printf("operand:%18s%02d%n%n", " ", Integer.parseInt(currReg) % 100);
 
         // Load memory addresses   
         System.out.println("MEMORY:");
@@ -75,12 +70,6 @@ public class Loader {
             if (i % 10 == 9)
                 System.out.println();
         }
-    }
-    
-    public void execute() {
-      for (int i = 0; i < Memory.getMemSize(); i++) {
-         Processor.performOperation(Memory.getItem(i));  
-      }
     }
 
     public static void main(String ...args) {
