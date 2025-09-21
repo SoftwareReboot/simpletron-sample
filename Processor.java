@@ -27,7 +27,6 @@ public class Processor {
          this.accumulator = String.format("%04d", num);
    }
 
-
    public int getCounter() {
       return counter;
    }
@@ -163,7 +162,6 @@ public class Processor {
          memory.addItem(address, val);
       }
    }
-
    
    public void write(int address) {
       String value = memory.getItem(address);
@@ -176,7 +174,6 @@ public class Processor {
       }
       System.out.print(getRes());
    }
-
    
    public void load(int opCode, int operand) {
       String result = " ";
