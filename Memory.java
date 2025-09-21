@@ -1,12 +1,8 @@
 public class Memory {
    private static String[] addresses;
-   private static String currAcc;
-   private static int currCounter;
       
    public Memory(int size) {
-      addresses = new String[size];
-      currAcc = new String("+0000");
-      currCounter = 0;   
+      addresses = new String[size];   
       
       for (int i = 0; i < size; i++)
          addresses[i] = "0000";
@@ -16,27 +12,15 @@ public class Memory {
       addresses[index] = value;
    }
    
-   public static String getItem (int index) {
+   public String getItem (int index) {
       return addresses[index];  
    }
 
-   public static String[] getAdds() {
+   public String[] getAdds() {
       return addresses;
    }
    
-   public static String getCurrAcc() {
-      return currAcc;
-   }
-   
-   public static void setAcc(String value) {
-      currAcc = value;
-   }
-
-   public static int getCurrCounter() {
-      return currCounter;
-   }
-   
-   public static int getMemSize() {
-      return addresses.size;
+   public int getMemSize() {
+      return addresses.length;
    }
 }
