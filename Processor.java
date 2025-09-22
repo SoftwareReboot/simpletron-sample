@@ -91,8 +91,19 @@ public class Processor {
       }
       counter++;
    }
+   
+   public void dumpDirect() {
+      while (counter < memory.getMemSize()) {
+         String[] addresses = memory.getAdds();
+         int currAcc = Integer.parseInt(getAcc());
+         int currCounter = getCounter();
+         String currReg = memory.getItem(currCounter);
+         
+         execute();
+      }
+   }
 
-   public void dump() {
+   public void dumpStep() {
       while (counter < memory.getMemSize()) {
          String[] addresses = memory.getAdds();
          int currAcc = Integer.parseInt(getAcc());
