@@ -6,12 +6,19 @@ public class Loader {
     public Memory mem;
     public Processor pro;
 
-    public Loader(String filename) {
+    public Loader(String filename, String showMode) {
         mem = new Memory(100);
         loadFile(filename);
 
         pro = new Processor(mem);
-        pro.dump();
+        if (showMode.equals("-s"))
+            pro.dumpStep();
+        else if (showMode.equals("-d"))
+            pro.dumpDirect();
+        else {
+            System.out.println("INVALID DISPLAY MODE. TERMINATING PROGRAM...");
+            System.exit(1);
+        }    
     }
 
     public void loadFile(String filename) {
@@ -39,8 +46,9 @@ public class Loader {
         if (args.length == 0) {
             System.out.println("Please provide a file name.");
             return;
-        }
-
-        new Loader(args[0]);
+        } else if (args.length == 1)
+            new Loader(args[0], "-d");
+        else 
+            new Loader(args[0], args[1]);
     }
 }
