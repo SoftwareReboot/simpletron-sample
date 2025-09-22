@@ -181,7 +181,7 @@ public class Processor {
       } else {
          this.setRes(value);
       }
-      System.out.print(getRes());
+      System.out.println(getRes());
    }
    
    public void load(int opCode, int operand) {
