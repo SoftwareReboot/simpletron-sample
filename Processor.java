@@ -177,11 +177,10 @@ public class Processor {
 
       if (value.matches("[+-]?\\d+")) {
          int num = Integer.parseInt(value);
-         this.setRes(Integer.toString(num));
+         System.out.print(Integer.toString(num));
       } else {
-         this.setRes(value);
-      }
-      System.out.println(getRes());
+         System.out.print(value);
+      }  
    }
    
    public void load(int opCode, int operand) {
