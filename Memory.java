@@ -9,7 +9,12 @@ public class Memory {
    }
    
    public void addItem (int index, String value) {
-      addresses[index] = value;
+      if (value.matches("\\d+")) {
+         int num = Integer.parseInt(value);
+         addresses[index] = String.format("%04d", num);
+      } else {
+         addresses[index] = value;
+      } 
    }
    
    public String getItem (int index) {
