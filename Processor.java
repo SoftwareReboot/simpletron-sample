@@ -177,7 +177,7 @@ public class Processor {
 
       if (value.matches("[+-]?\\d+")) {
          int num = Integer.parseInt(value);
-         System.out.print(Integer.toString(num));
+         System.out.print("RESULT: " + Integer.toString(num));
       } else {
          System.out.print("RESULT: " + value);
       }  
