@@ -179,7 +179,7 @@ public class Processor {
          int num = Integer.parseInt(value);
          System.out.print(Integer.toString(num));
       } else {
-         System.out.print(value);
+         System.out.print("RESULT: " + value);
       }  
    }
    
