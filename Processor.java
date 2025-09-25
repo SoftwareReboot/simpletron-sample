@@ -30,10 +30,6 @@ public class Processor {
    public int getCounter() {
       return counter;
    }
-   
-   private void setRes(String val) {
-      res.append(val);
-   }
 
    public String getRes() {
       return res.toString();
@@ -94,11 +90,6 @@ public class Processor {
    
    public void dumpDirect() {
       while (counter < memory.getMemSize()) {
-         String[] addresses = memory.getAdds();
-         int currAcc = Integer.parseInt(getAcc());
-         int currCounter = getCounter();
-         String currReg = memory.getItem(currCounter);
-         
          execute();
       }
    }
@@ -177,7 +168,7 @@ public class Processor {
 
       if (value.matches("[+-]?\\d+")) {
          int num = Integer.parseInt(value);
-         System.out.print("RESULT: " + Integer.toString(num));
+         System.out.print(Integer.toString(num));
       } else {
          System.out.print("RESULT: " + value);
       }  
